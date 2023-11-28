@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\CancerTypes;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class DoctorFactory extends Factory
@@ -14,7 +15,11 @@ class DoctorFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'fullname'=> $this->faker->firstName() . ' ' . $this->faker->lastName(), 
+            'email'=> $this->faker->unique()->safeEmail(),
+            'password'=> bcrypt('p@ssw0rd'),
+            'specialization'=> CancerTypes::factory(),
+            'username'=> $this->faker->userName(),
         ];
     }
 }

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +14,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        DB::table('users')->insert([
+            'name'=>'gaurav heda',
+            'email'=>'admin@admin.com',
+            'password'=>bcrypt('test@123'),
+        ]);
+
+        $this->call([DoctorSeeder::class]);
+        $this->call([PatientSeeder::class]);
+        $this->call([CancerTypesSeeder::class]);
+
     }
 }

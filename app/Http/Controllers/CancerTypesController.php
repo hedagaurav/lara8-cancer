@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreDoctorRequest;
-use App\Http\Requests\UpdateDoctorRequest;
-use App\Models\Doctor;
+use App\Http\Requests\StoreCancerTypesRequest;
+use App\Http\Requests\UpdateCancerTypesRequest;
+use App\Models\CancerTypes;
 
-class DoctorController extends Controller
+class CancerTypesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        return \response();
+        //
     }
 
     /**
@@ -31,10 +31,10 @@ class DoctorController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreDoctorRequest  $request
+     * @param  \App\Http\Requests\StoreCancerTypesRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreDoctorRequest $request)
+    public function store(StoreCancerTypesRequest $request)
     {
         //
     }
@@ -42,10 +42,10 @@ class DoctorController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Doctor  $doctor
+     * @param  \App\Models\CancerTypes  $cancerTypes
      * @return \Illuminate\Http\Response
      */
-    public function show(Doctor $doctor)
+    public function show(CancerTypes $cancerTypes)
     {
         //
     }
@@ -53,10 +53,10 @@ class DoctorController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Doctor  $doctor
+     * @param  \App\Models\CancerTypes  $cancerTypes
      * @return \Illuminate\Http\Response
      */
-    public function edit(Doctor $doctor)
+    public function edit(CancerTypes $cancerTypes)
     {
         //
     }
@@ -64,11 +64,11 @@ class DoctorController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateDoctorRequest  $request
-     * @param  \App\Models\Doctor  $doctor
+     * @param  \App\Http\Requests\UpdateCancerTypesRequest  $request
+     * @param  \App\Models\CancerTypes  $cancerTypes
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateDoctorRequest $request, Doctor $doctor)
+    public function update(UpdateCancerTypesRequest $request, CancerTypes $cancerTypes)
     {
         //
     }
@@ -76,10 +76,10 @@ class DoctorController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Doctor  $doctor
+     * @param  \App\Models\CancerTypes  $cancerTypes
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Doctor $doctor)
+    public function destroy(CancerTypes $cancerTypes)
     {
         //
     }
