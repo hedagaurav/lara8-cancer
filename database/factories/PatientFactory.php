@@ -16,7 +16,7 @@ class PatientFactory extends Factory
         return [
             'full_name' => $this->faker->firstName() .' '. $this->faker->lastName(),
             'date_of_birth' => $this->faker->date(),
-            'gender' => $this->faker->randomElements(['Male', 'Female', 'Other'],1,true),
+            'gender' => $this->faker->randomElement(['Male', 'Female', 'Other']),
             'contact_number' => $this->faker->regexify('[6-9]{1}[0-9]{9}'),
             'email' => $this->faker->unique()->safeEmail(),
             'address' => $this->faker->address(),

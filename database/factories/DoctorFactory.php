@@ -18,7 +18,7 @@ class DoctorFactory extends Factory
             'fullname'=> $this->faker->firstName() . ' ' . $this->faker->lastName(), 
             'email'=> $this->faker->unique()->safeEmail(),
             'password'=> bcrypt('p@ssw0rd'),
-            'specialization'=> CancerTypes::factory(),
+            'specialization'=> $this->faker->randomElement(CancerTypes::all()),
             'username'=> $this->faker->userName(),
         ];
     }

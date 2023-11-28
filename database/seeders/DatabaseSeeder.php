@@ -20,9 +20,9 @@ class DatabaseSeeder extends Seeder
             'password'=>bcrypt('test@123'),
         ]);
 
+        $this->call([CancerTypesSeeder::class]);
         $this->call([DoctorSeeder::class]);
         $this->call([PatientSeeder::class]);
-        $this->call([CancerTypesSeeder::class]);
 
     }
 }

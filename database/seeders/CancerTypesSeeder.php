@@ -14,6 +14,6 @@ class CancerTypesSeeder extends Seeder
      */
     public function run()
     {
-        CancerTypes::factory()->create();
+        CancerTypes::factory()->count(5)->create();
     }
 }
