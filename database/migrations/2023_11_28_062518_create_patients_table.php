@@ -16,11 +16,18 @@ class CreatePatientsTable extends Migration
         Schema::create('patients', function (Blueprint $table) {
             $table->id();
             $table->string('full_name');
-            $table->date('date_of_birth')->nullable();
-            $table->enum('gender', ['Male', 'Female', 'Other'])->nullable();
-            $table->string('contact_number')->nullable();
             $table->string('email')->unique();
+            $table->string('password');
+            // $table->date('date_of_birth')->nullable();
+            // $table->enum('gender', ['Male', 'Female', 'Other'])->nullable();
+            $table->string('contact_number')->nullable();
+            $table->integer('cancer_type')->unsigned();
             $table->text('address')->nullable();
+            $table->string('state');
+            $table->string('city');
+            $table->string('pincode');
+            $table->text('documents');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

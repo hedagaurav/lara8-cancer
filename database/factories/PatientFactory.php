@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\CancerTypes;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PatientFactory extends Factory
@@ -15,11 +16,15 @@ class PatientFactory extends Factory
     {
         return [
             'full_name' => $this->faker->firstName() .' '. $this->faker->lastName(),
-            'date_of_birth' => $this->faker->date(),
-            'gender' => $this->faker->randomElement(['Male', 'Female', 'Other']),
+            'password' => bcrypt('p@ssw0rd'),
+            // 'gender' => $this->faker->randomElement(['Male', 'Female', 'Other']),
             'contact_number' => $this->faker->regexify('[6-9]{1}[0-9]{9}'),
             'email' => $this->faker->unique()->safeEmail(),
             'address' => $this->faker->address(),
+            'state' => $this->faker->state(),
+            'city' => $this->faker->address(),
+            'pincode' => $this->faker->address(),
+            'cancer_type' => $this->faker->randomElement(CancerTypes::all()),
         ];
     }
 }

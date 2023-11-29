@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CancerTypesController;
 use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\TreatmentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,9 +17,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard');
-});
+Route::view('/', 'treatment_enquiry');
+
+Route::post('treatment_enquiry',[TreatmentController::class,'treatment_enquiry'])->name('treatment_enquiry');
 
 
 
