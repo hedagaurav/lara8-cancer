@@ -15,7 +15,7 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        return \response();
+        return view('dashboard');
     }
 
     /**

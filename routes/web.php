@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CancerTypesController;
+use App\Http\Controllers\DoctorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +17,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard');
+});
+
+
+
+/* Admin Routes */
+
+
+Route::get('admin', [AdminController::class, 'index'])->name('admin.dashboard');
+
+Route::group(['prefix' => 'admin'], function () {
+    Route::resource('doctor', DoctorController::class);
+    Route::resource('cancer-type', CancerTypesController::class);
 });
