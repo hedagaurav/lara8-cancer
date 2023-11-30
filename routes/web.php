@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CancerTypesController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\TreatmentController;
@@ -26,8 +27,8 @@ Route::post('treatment_enquiry',[TreatmentController::class,'treatment_enquiry']
 /* Admin Routes */
 
 
-Route::get('admin', [AdminController::class, 'index'])->name('admin.dashboard');
-
+Route::get('admin', [AdminController::class, 'index'])->name('admin.dashboard')->middleware('auth');
+Route::get('login',[AuthController::class,'login'])->name('login');
 Route::group(['prefix' => 'admin'], function () {
     Route::resource('doctor', DoctorController::class);
     Route::resource('cancer-type', CancerTypesController::class);

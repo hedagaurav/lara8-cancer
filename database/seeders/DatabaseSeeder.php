@@ -20,6 +20,13 @@ class DatabaseSeeder extends Seeder
             'password'=>bcrypt('test@123'),
         ]);
 
+        $this->call(CountriesTableSeeder::class);
+        $this->call(StatesTableSeeder::class);
+        $this->call(CitiesTableChunkOneSeeder::class);
+        $this->call(CitiesTableChunkTwoSeeder::class);
+        $this->call(CitiesTableChunkThreeSeeder::class);
+        $this->call(CitiesTableChunkFourSeeder::class);
+        $this->call(CitiesTableChunkFiveSeeder::class);
         $this->call([CancerTypesSeeder::class]);
         $this->call([DoctorSeeder::class]);
         $this->call([PatientSeeder::class]);

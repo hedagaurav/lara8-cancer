@@ -22,9 +22,10 @@ class PatientFactory extends Factory
             'email' => $this->faker->unique()->safeEmail(),
             'address' => $this->faker->address(),
             'state' => $this->faker->state(),
-            'city' => $this->faker->address(),
-            'pincode' => $this->faker->address(),
+            'city' => $this->faker->city(),
+            'pincode' => $this->faker->regexify('[1-9]{1}[0-9]{5}'),
             'cancer_type' => $this->faker->randomElement(CancerTypes::all()),
+            'documents' => '',
         ];
     }
 }

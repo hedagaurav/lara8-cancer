@@ -14,7 +14,9 @@
     <!-- <link href="{{ asset('/css/custom.min.css') }}" rel="stylesheet"> -->
 </head>
 <body>
-    @yield('content')
+    <div class="container">
+        @yield('content')
+    </div>
 
     <!-- jQuery -->
     <script src="{{ asset('/jquery/dist/jquery.min.js') }}"></script>

@@ -1,0 +1,7 @@
+patient enquiry - 
+
+patient
+
+doctor - admin, login
+
+cancertype - admin
