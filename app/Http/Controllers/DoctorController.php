@@ -5,9 +5,21 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreDoctorRequest;
 use App\Http\Requests\UpdateDoctorRequest;
 use App\Models\Doctor;
+use Illuminate\Http\Request;
 
 class DoctorController extends Controller
 {
+
+    function login(Request $request)
+    {
+        $data = $request->all();
+
+        if(auth()->attempt($data)){
+            return redirect('/')->with('message','User Logged In');
+        }
+        return view('login')->with('message','Invalid credentials');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -31,7 +43,7 @@ class DoctorController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreDoctorRequest  $request
+     * @param \App\Http\Requests\StoreDoctorRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreDoctorRequest $request)
@@ -42,7 +54,7 @@ class DoctorController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Doctor  $doctor
+     * @param \App\Models\Doctor $doctor
      * @return \Illuminate\Http\Response
      */
     public function show(Doctor $doctor)
@@ -53,7 +65,7 @@ class DoctorController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Doctor  $doctor
+     * @param \App\Models\Doctor $doctor
      * @return \Illuminate\Http\Response
      */
     public function edit(Doctor $doctor)
@@ -64,8 +76,8 @@ class DoctorController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateDoctorRequest  $request
-     * @param  \App\Models\Doctor  $doctor
+     * @param \App\Http\Requests\UpdateDoctorRequest $request
+     * @param \App\Models\Doctor $doctor
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateDoctorRequest $request, Doctor $doctor)
@@ -76,7 +88,7 @@ class DoctorController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Doctor  $doctor
+     * @param \App\Models\Doctor $doctor
      * @return \Illuminate\Http\Response
      */
     public function destroy(Doctor $doctor)
