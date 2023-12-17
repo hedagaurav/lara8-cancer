@@ -22,14 +22,14 @@ Route::view('/', 'treatment_enquiry');
 
 Route::post('treatment_enquiry',[TreatmentController::class,'treatment_enquiry'])->name('treatment_enquiry');
 
-/* Admin Routes */
 
 Route::get('admin', [AdminController::class, 'index'])->name('admin.dashboard')->middleware('auth');
-
+Route::get('doctor',[DoctorController::class,'index']);
 Route::view('login','login');
-Route::get('login',[DoctorController::class,'login'])->name('login');
+Route::post('login',[AuthController::class,'login'])->name('login');
 
-Route::group(['prefix' => 'admin'], function () {
+/* Admin Routes */
+Route::group(['prefix' => 'admin','middleware'=>'auth'], function () {
     Route::resource('doctor', DoctorController::class);
     Route::resource('cancer-type', CancerTypesController::class);
 });

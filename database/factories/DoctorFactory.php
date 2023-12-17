@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\CancerTypes;
+use App\Models\Doctor;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class DoctorFactory extends Factory
@@ -14,12 +16,16 @@ class DoctorFactory extends Factory
      */
     public function definition()
     {
+
         return [
-            'fullname'=> $this->faker->firstName() . ' ' . $this->faker->lastName(), 
-            'email'=> $this->faker->unique()->safeEmail(),
-            'password'=> bcrypt('p@ssw0rd'),
+//            'fullname'=> $this->faker->firstName() . ' ' . $this->faker->lastName(),
+//            'email'=> $this->faker->unique()->safeEmail(),
+//            'password'=> bcrypt('p@ssw0rd'),
+//            'user_id'=> $this->faker->randomElement($doc),
+            'user_id'=> User::select('id')->where('user_type','D')->doesntHave('doctor')->first()->id,
+
             'specialization'=> $this->faker->randomElement(CancerTypes::all()),
-            'username'=> $this->faker->userName(),
+//            'username'=> $this->faker->userName(),
         ];
     }
 }

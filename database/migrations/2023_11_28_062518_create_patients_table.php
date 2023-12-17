@@ -15,9 +15,10 @@ class CreatePatientsTable extends Migration
     {
         Schema::create('patients', function (Blueprint $table) {
             $table->id();
-            $table->string('full_name');
-            $table->string('email')->unique();
-            $table->string('password');
+//            $table->string('full_name');
+//            $table->string('email')->unique();
+//            $table->string('password');
+            $table->foreignId('user_id')->constrained('users');
             $table->string('contact_number')->nullable();
             $table->integer('cancer_type')->unsigned();
             $table->text('address')->nullable();
