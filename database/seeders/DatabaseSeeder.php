@@ -28,10 +28,11 @@ class DatabaseSeeder extends Seeder
 //            CitiesTableChunkThreeSeeder::class,
 //            CitiesTableChunkFourSeeder::class,
 //            CitiesTableChunkFiveSeeder::class,
-            UserSeeder::class]);
+            // UserSeeder::class
+        ]);
         $this->call([CancerTypesSeeder::class]);
         $this->call([DoctorSeeder::class]);
-//        $this->call([PatientSeeder::class]);
+       $this->call([PatientSeeder::class]);
 
     }
 }

@@ -22,8 +22,8 @@ class DoctorFactory extends Factory
 //            'email'=> $this->faker->unique()->safeEmail(),
 //            'password'=> bcrypt('p@ssw0rd'),
 //            'user_id'=> $this->faker->randomElement($doc),
-            'user_id'=> User::select('id')->where('user_type','D')->doesntHave('doctor')->first()->id,
-
+            'user_id'=> User::factory()->create(['user_type' => 'D']),
+            
             'specialization'=> $this->faker->randomElement(CancerTypes::all()),
 //            'username'=> $this->faker->userName(),
         ];

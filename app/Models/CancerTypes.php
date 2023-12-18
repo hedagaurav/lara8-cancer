@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class CancerTypes extends Model
 {
     use HasFactory;
+
+    public function doctors(){
+        return $this->hasOne(Doctor::class);
+    }
 }

@@ -46,6 +46,10 @@ class User extends Authenticatable
         return $this->hasOne(Doctor::class);
     }
 
+    // public function user_type(){
+    //     return $this->morphTo();
+    // }
+
     public function patient(){
         return $this->hasOne(Patient::class);
     }

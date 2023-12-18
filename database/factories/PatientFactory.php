@@ -29,7 +29,7 @@ class PatientFactory extends Factory
             'pincode' => $this->faker->regexify('[1-9]{1}[0-9]{5}'),
             'cancer_type' => $this->faker->randomElement(CancerTypes::all()),
             'documents' => '',
-            'user_id'=> $this->faker->numberBetween(16,30),
+            'user_id'=> User::factory()->create(['user_type'=>'P']),
         ];
     }
 }

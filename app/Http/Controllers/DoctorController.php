@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreDoctorRequest;
 use App\Http\Requests\UpdateDoctorRequest;
 use App\Models\Doctor;
-use http\Client\Curl\User;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DoctorController extends Controller
@@ -29,10 +29,14 @@ class DoctorController extends Controller
     public function index()
     {
         $data = [];
-        $doctor = Doctor::where('email',auth()->user()->email)->first();
-
-        $user = User::find()
-        return view('doctor_dashboard',compact(['doctor']));
+        $doctors = Doctor::with(['user','cancer_type'])->get();
+        // $cancer = $doctors[0];
+        echo "<pre>";
+        print_r($doctors[0]->user->toArray());
+        print_r($doctors[1]->user->toArray());
+        print_r($doctors[2]->user->toArray());
+        exit;
+        return view('doctor_dashboard',compact(['doctors']));
     }
 
     /**
