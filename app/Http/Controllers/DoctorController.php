@@ -31,12 +31,12 @@ class DoctorController extends Controller
         $data = [];
         $doctors = Doctor::with(['user','cancer_type'])->get();
         // $cancer = $doctors[0];
-        echo "<pre>";
-        print_r($doctors[0]->user->toArray());
-        print_r($doctors[1]->user->toArray());
-        print_r($doctors[2]->user->toArray());
-        exit;
-        return view('doctor_dashboard',compact(['doctors']));
+        // echo "<pre>";
+        // print_r($doctors->toArray());
+        // $user_cancer = User::has('doctor')->with('doctor.cancer_type')->get();
+        // print_r($user_cancer->toArray());
+        // exit;
+        return view('admin.doctor_list',compact(['doctors']));
     }
 
     /**

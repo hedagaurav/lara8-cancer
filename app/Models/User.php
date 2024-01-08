@@ -53,4 +53,8 @@ class User extends Authenticatable
     public function patient(){
         return $this->hasOne(Patient::class);
     }
+
+    public function cancer_type(){
+        return $this->hasOneThrough(CancerTypes::class,Doctor::class,);
+    }
 }
