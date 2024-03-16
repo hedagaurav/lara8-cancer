@@ -15,21 +15,24 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'name'=>'gaurav heda',
-            'email'=>'admin@admin.com',
-            'password'=>bcrypt('test@123'),
+            'name' => 'gaurav heda',
+            'email' => 'admin@admin.com',
+            'password' => bcrypt('test@123'),
         ]);
 
-        $this->call(CountriesTableSeeder::class);
-        $this->call(StatesTableSeeder::class);
-        // $this->call(CitiesTableChunkOneSeeder::class);
-        // $this->call(CitiesTableChunkTwoSeeder::class);
-        // $this->call(CitiesTableChunkThreeSeeder::class);
-        // $this->call(CitiesTableChunkFourSeeder::class);
-        // $this->call(CitiesTableChunkFiveSeeder::class);
+        $this->call([
+//            CountriesTableSeeder::class,
+//            StatesTableSeeder::class,
+//            CitiesTableChunkOneSeeder::class,
+//            CitiesTableChunkTwoSeeder::class,
+//            CitiesTableChunkThreeSeeder::class,
+//            CitiesTableChunkFourSeeder::class,
+//            CitiesTableChunkFiveSeeder::class,
+            // UserSeeder::class
+        ]);
         $this->call([CancerTypesSeeder::class]);
         $this->call([DoctorSeeder::class]);
-        $this->call([PatientSeeder::class]);
+       $this->call([PatientSeeder::class]);
 
     }
 }

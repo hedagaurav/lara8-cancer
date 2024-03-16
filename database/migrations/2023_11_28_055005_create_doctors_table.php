@@ -15,11 +15,13 @@ class CreateDoctorsTable extends Migration
     {
         Schema::create('doctors', function (Blueprint $table) {
             $table->id();
-            $table->string('fullname');
-            $table->string('email')->unique();
-            $table->string('password');
+//            $table->integer('user_id');
+//            $table->string('fullname');
+//            $table->string('email')->unique();
+//            $table->string('password');
+            $table->foreignId('user_id')->constrained('users');
             $table->string('specialization');
-            $table->string('username')->unique();
+//            $table->string('username')->unique();
             $table->softDeletes(); // Add soft delete support
             $table->timestamps();
         });

@@ -41,4 +41,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function doctor(){
+        return $this->hasOne(Doctor::class);
+    }
+
+    // public function user_type(){
+    //     return $this->morphTo();
+    // }
+
+    public function patient(){
+        return $this->hasOne(Patient::class);
+    }
+
+    public function cancer_type(){
+        return $this->hasOneThrough(CancerTypes::class,Doctor::class,);
+    }
 }
