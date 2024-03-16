@@ -24,10 +24,10 @@ Route::post('treatment_enquiry',[TreatmentController::class,'treatment_enquiry']
 
 /* Admin Routes */
 
-Route::get('admin', [AdminController::class, 'index'])->name('admin.dashboard')->middleware('auth');
+Route::get('admin', [AdminController::class, 'index'])->name('admin.dashboard')->middleware();
 
 Route::view('login','login');
-Route::get('login',[DoctorController::class,'login'])->name('login');
+Route::post('login',[DoctorController::class,'login'])->name('login');
 
 Route::group(['prefix' => 'admin'], function () {
     Route::resource('doctor', DoctorController::class);
