@@ -1,6 +1,6 @@
 @extends('admin.layout')
 
-@section('pagetitle')Index Page @endsection
+@section('pagetitle')Admin Index Page @endsection
 @section('content')
 
 <!-- page content -->

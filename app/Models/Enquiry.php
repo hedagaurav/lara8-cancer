@@ -5,15 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CancerTypes extends Model
+class Enquiry extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name', 'description'
+        'cancer_type_id',
+        'patient_id',
     ];
-
-    // public function doctors(){
-    //     return $this->hasOne(Doctor::class);
-    // }
 }

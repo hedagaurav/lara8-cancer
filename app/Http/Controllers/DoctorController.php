@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreDoctorRequest;
 use App\Http\Requests\UpdateDoctorRequest;
+use App\Models\CancerTypes;
 use App\Models\Doctor;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DoctorController extends Controller
 {
@@ -28,8 +31,8 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        $data = [];
-        $doctors = Doctor::with(['user','cancer_type'])->get();
+        $doctors = Doctor::with(['cancer_type'])->get();
+        
         // $cancer = $doctors[0];
         // echo "<pre>";
         // print_r($doctors->toArray());
@@ -46,18 +49,39 @@ class DoctorController extends Controller
      */
     public function create()
     {
-        //
+        $cancer_type = CancerTypes::all();
+        return view('admin.doctor_add',compact('cancer_type'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param \App\Http\Requests\StoreDoctorRequest $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreDoctorRequest $request)
+    public function store(Request $request)
     {
-        //
+        DB::beginTransaction();
+        try {
+            $doctor = new Doctor();
+            $doctor->fullname = $request->doctor_name;
+            $doctor->email = $request->doctor_email;
+            $doctor->password = 'here';
+            $doctor->username = 'here'.random_int(1,100);
+            $doctor->specialization = $request->doctor_cancer;
+            
+            if($doctor->save()){
+
+                $doctor_id = $doctor->id;
+                DB::commit();            
+                echo "doctor added send email";
+            }
+        } catch (Exception $ex) {
+            DB::rollBack();
+            dd($ex);
+
+        }
+
     }
 
     /**

@@ -44,7 +44,7 @@ Cancer Treatment Enquiry
                     <label for="cancer_type"><?= ucwords('cancer type') ?>: <span class="text-danger">*</span></label>
                     <select type="text" class="form-control" name="cancer_type" id="cancer_type">
                         <option value=""><?= ucwords('Select cancer type') ?></option>
-                        <option value="throat" selected><?= ucfirst('throat') ?></option>
+                        <option value="4" selected><?= ucfirst('throat') ?></option>
                     </select>
                     @error('cancer_type') <div class="text-danger">{{ $message}}</div>@enderror
                 </div>

@@ -18,8 +18,8 @@
     @endif
     <tbody>
         <tr>
-            <td>{{ $doctor->user->name }}</td>
-            <td>{{ $doctor->user->email }}</td>
+            <td>{{ $doctor->fullname }}</td>
+            <td>{{ $doctor->email }}</td>
             <td>{{ $doctor->cancer_type->name }}</td>
         </tr>
     </tbody>
