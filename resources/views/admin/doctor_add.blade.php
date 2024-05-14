@@ -2,7 +2,7 @@
 @section('content')
 <h3>Add Doctor</h3>
 
-<form action="{{ route('doctor.store') }}" method="post">
+<form action="{{ route('doctor.save') }}" method="post">
     @csrf
     <label for="doctor_name">Doctor Name</label>
     <input type="text" name="doctor_name" id="doctor_name" value="marianna">

@@ -1,9 +1,10 @@
 <?php
 
+use App\Http\Controllers\admin\CancerTypesController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\CancerTypesController;
 use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\EnquiryController;
 use App\Http\Controllers\TreatmentController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,21 +19,39 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/*  */
+Route::view('guide','guide');
 
-Route::view('/', 'treatment_enquiry');
+/* enquiry form */
+Route::get('/', [EnquiryController::class, 'index'])->name('enquiry.form');
+Route::post('/', [EnquiryController::class, 'save_enquiries'])->name('save.enquiry');
 
-Route::post('treatment_enquiry',[TreatmentController::class,'treatment_enquiry'])->name('treatment_enquiry');
+/* admin */
+Route::group(['prefix' => 'admin'], function () {
+    Route::view('login', 'login');
+    Route::post('login', [AuthController::class, 'login'])->name('login');
+
+    /* admin - cancer type CRUD */
+    Route::resource('cancer_type', CancerTypesController::class);
+    // Route::get('cancer_type/add', [AdminController::class, 'add_cancer_types'])->name('cancer_type.add');
+    // Route::post('cancer_type/save', [AdminController::class, 'store_cancer_types'])->name('cancer_type.save');
+    
+    /* admin - doctor CRUD */
+    Route::get('doctor', [AdminController::class, 'list_doctor'])->name('doctor.dashboard');
+    Route::get('doctor/add', [AdminController::class, 'add_doctor'])->name('doctor.add');
+    Route::post('doctor/save', [AdminController::class, 'store_doctor'])->name('doctor.save');
+    
+
+    // Route::resource('doctor', DoctorController::class);
+    // Route::resource('cancer-type', CancerTypesController::class);
+});
+
+
+/* doctor */
 
 Route::get('admin', [AdminController::class, 'index'])->name('admin.dashboard');
 
-Route::get('doctor',[DoctorController::class,'index'])->name('doctor');
+Route::get('doctor_enquiries', [DoctorController::class, 'index'])->name('doctor');
 
-Route::view('login','login');
-Route::post('login',[AuthController::class,'login'])->name('login');
 
 /* Admin Routes */
-Route::group(['prefix' => 'admin'], function () {
-    Route::resource('doctor', DoctorController::class);
-    Route::resource('cancer-type', CancerTypesController::class);
-});
+

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCancerTypesTable extends Migration
+class CreateEnquiriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateCancerTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('cancer_types', function (Blueprint $table) {
+        Schema::create('enquiries', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->text('description')->nullable();
-            $table->softDeletes(); // Add soft delete support
+            $table->string('patient_name');
+            $table->string('email');
+            $table->unsignedBigInteger('cancer_type');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateCancerTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cancer_types');
+        Schema::dropIfExists('enquiries');
     }
 }

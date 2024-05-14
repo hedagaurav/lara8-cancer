@@ -13,7 +13,11 @@ class CancerTypes extends Model
         'name', 'description'
     ];
 
-    // public function doctors(){
-    //     return $this->hasOne(Doctor::class);
-    // }
+    public function doctors(){
+        return $this->hasMany(Doctor::class,'specialization','id');
+    }
+
+    public function patients(){
+        return $this->hasMany(Patient::class,'cancer_type','id');
+    }
 }

@@ -1,10 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCancerTypesRequest;
 use App\Http\Requests\UpdateCancerTypesRequest;
 use App\Models\CancerTypes;
+use Exception;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CancerTypesController extends Controller
 {
@@ -15,7 +19,8 @@ class CancerTypesController extends Controller
      */
     public function index()
     {
-        //
+        $cancer_types_list = CancerTypes::all();
+        return view('admin/cancer_type_list',compact('cancer_types_list'));
     }
 
     /**
@@ -25,27 +30,43 @@ class CancerTypesController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin/cancer_type_add');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreCancerTypesRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreCancerTypesRequest $request)
     {
-        //
+        DB::beginTransaction();
+        try {
+            $cancer_type = new CancerTypes();
+            $cancer_type->name = $request->cancer_type_name;
+            $cancer_type->description = $request->cancer_type_description;
+            
+            if($cancer_type->save()){
+
+                $cancer_type_id = $cancer_type->id;
+                DB::commit();            
+                echo "cancer type added";
+            }
+        } catch (Exception $ex) {
+            DB::rollBack();
+            dd($ex);
+
+        }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\CancerTypes  $cancerTypes
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(CancerTypes $cancerTypes)
+    public function show($id)
     {
         //
     }
@@ -53,10 +74,10 @@ class CancerTypesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\CancerTypes  $cancerTypes
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(CancerTypes $cancerTypes)
+    public function edit($id)
     {
         //
     }
@@ -64,11 +85,11 @@ class CancerTypesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateCancerTypesRequest  $request
-     * @param  \App\Models\CancerTypes  $cancerTypes
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCancerTypesRequest $request, CancerTypes $cancerTypes)
+    public function update(UpdateCancerTypesRequest $request, $id)
     {
         //
     }
@@ -76,10 +97,10 @@ class CancerTypesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\CancerTypes  $cancerTypes
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CancerTypes $cancerTypes)
+    public function destroy($id)
     {
         //
     }

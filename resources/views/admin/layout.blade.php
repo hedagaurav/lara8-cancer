@@ -11,10 +11,9 @@
     <title>@yield('page_title', 'Cancer Treatment') </title>
 
     <!-- Bootstrap -->
-    <!-- Font Awesome -->
-    <!-- NProgress -->
 
     <!-- Custom Theme Style -->
+    <link rel="stylesheet" href="{{ asset('assets/datatables.min.css') }}" />
 
     @yield('head_links')
 </head>
@@ -22,6 +21,9 @@
 <body>
     @include('admin.includes.sidebar')
     @yield('content')
+
+    <script src="{{ asset('assets/jquery-3.7.1.min.js') }}"></script>
+    <script src="{{ asset('assets/datatables.min.js') }}"></script>
     @yield('foot_links')
 </body>
 

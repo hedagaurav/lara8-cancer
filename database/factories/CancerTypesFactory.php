@@ -14,8 +14,8 @@ class CancerTypesFactory extends Factory
     public function definition()
     {
         return [
-            'name'=> $this->faker->word(),
-            'description'=> $this->faker->paragraph(),
+            'cancer_name'=> $this->faker->word(),
+            // 'description'=> $this->faker->paragraph(),
         ];
     }
 }
