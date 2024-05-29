@@ -111,14 +111,14 @@
                     <input type="text" class="form-control" name="pincode" id="pincode" value="421302">
                     @error('pincode') <div class="text-danger">{{ $message}}</div>@enderror
                 </div> --}}
-                    <div class="row form-group">
+                    {{-- <div class="row form-group">
                         <label for="documents"><?= ucwords('documents') ?> <span class="text-danger">*</span></label>
                         <div class="col-sm-8"></div>
                         <input type="file" class="form-control" name="documents" id="documents" multiple>
                         @error('documents')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
-                    </div>
+                    </div> --}}
                     <div class="row justify-content-center">
                         <input type="submit" class="btn btn-info" value="Submit Enquiry">
 

@@ -37,8 +37,6 @@ class EnquiryController extends Controller
             // $patient->city = $request->city;
             // $patient->pincode = $request->pincode;
             if ($enquiry->save()) {
-
-
                 $enquiry_id = $enquiry->id;
             }
             DB::commit();

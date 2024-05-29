@@ -1,5 +1,5 @@
 <ul>
-    <li>enquiry -- anyone</li>
+    <li>enquiry -- anyone can enquire for the patients treatment</li>
     <strong>admin:</strong>
     <li>CRUD cancer Type</li>
     <li>CRUD doctor -- after creating user auto generate password and send it to doctor</li>
