@@ -9,7 +9,15 @@ class CancerTypes extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name', 'description'
+    ];
+
     public function doctors(){
-        return $this->hasOne(Doctor::class);
+        return $this->hasMany(Doctor::class,'specialization','id');
+    }
+
+    public function patients(){
+        return $this->hasMany(Patient::class,'cancer_type','id');
     }
 }

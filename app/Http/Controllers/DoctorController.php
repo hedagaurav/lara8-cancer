@@ -4,9 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreDoctorRequest;
 use App\Http\Requests\UpdateDoctorRequest;
+use App\Models\CancerTypes;
 use App\Models\Doctor;
+use App\Models\Enquiry;
+use App\Models\Patient;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DoctorController extends Controller
 {
@@ -28,15 +33,10 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        $data = [];
-        $doctors = Doctor::with(['user','cancer_type'])->get();
-        // $cancer = $doctors[0];
-        // echo "<pre>";
-        // print_r($doctors->toArray());
-        // $user_cancer = User::has('doctor')->with('doctor.cancer_type')->get();
-        // print_r($user_cancer->toArray());
-        // exit;
-        return view('admin.doctor_list',compact(['doctors']));
+        $doctors = Doctor::find(2);
+        $enquiries = Enquiry::with('patient','cancer_type')->where('cancer_type_id',$doctors->specialization)->get()->toArray();
+        
+        return view('doctor_enquiries_list',compact(['enquiries']));
     }
 
     /**
@@ -46,18 +46,19 @@ class DoctorController extends Controller
      */
     public function create()
     {
-        //
+        $cancer_type = CancerTypes::all();
+        return view('admin.doctor_add',compact('cancer_type'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param \App\Http\Requests\StoreDoctorRequest $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreDoctorRequest $request)
+    public function store(Request $request)
     {
-        //
+
     }
 
     /**

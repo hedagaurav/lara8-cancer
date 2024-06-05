@@ -5,9 +5,7 @@
 <!-- page content -->
 
 <h3>Doctors List</h3>
-<table id="doctor_list">
-    @foreach($doctors as $field => $doctor)
-    @if($field == 0 )
+<table id="doctor_list" class="doctor_list">
     <thead>
         <tr>
             <th>doctor</th>
@@ -15,19 +13,28 @@
             <th>Cancer Type</th>
         </tr>
     </thead>
-    @endif
     <tbody>
+        @foreach($doctors as $field => $doctor)
         <tr>
-            <td>{{ $doctor->user->name }}</td>
-            <td>{{ $doctor->user->email }}</td>
+            <td>{{ $doctor->fullname }}</td>
+            <td>{{ $doctor->email }}</td>
             <td>{{ $doctor->cancer_type->name }}</td>
         </tr>
+        @endforeach
     </tbody>
 
-    @endforeach
 
 
 </table>
 
 <!-- /page content -->
+@endsection
+
+@section('foot_links')
+    <script>
+        // let table = new DataTable('#doctor_list');
+        $(document).ready( function () {
+            $('#doctor_list').DataTable();
+        } );
+    </script>    
 @endsection

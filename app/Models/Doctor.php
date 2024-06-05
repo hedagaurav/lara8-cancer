@@ -13,11 +13,22 @@ class Doctor extends Model
     //     return $this->morphOne(User::class,'id');
     // }
 
-    public function user(){
-        return $this->belongsTo(User::class);
+    public function cancer_type(){
+        return $this->belongsTo(CancerTypes::class,'specialization','id');
     }
 
-    public function cancer_type(){
-        return $this->belongsTo(CancerTypes::class,'specialization');
+    public function enquiries()
+    {
+        return $this->hasManyThrough(
+            Enquiry::class,
+            CancerTypes::class,
+            'id', // Foreign key on the enquiries table
+            'cancer_type_id', // Foreign key on the patients table
+        );
     }
+
+    function patient(){
+        return $this->hasManyThrough(Patient::class,CancerTypes::class,'id','cancer_type');
+    }
+
 }
