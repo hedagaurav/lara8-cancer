@@ -1,7 +1,3 @@
-{{-- @extends('admin.layout') --}}
-
-{{-- @section('sidebar_menu') --}}
-<!-- sidebar menu -->
 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
       <div class="menu_section">
         <h3>Admin</h3>
@@ -11,7 +7,8 @@
               <span class="fa fa-chevron-down"></span>
             </a>
             <ul class="nav child_menu">
-              <li><a href="{{ url('admin/doctor') }}">Doctors List</a></li>
+              {{-- <li><a href="{{ url('admin/doctor') }}">Doctors List</a></li> --}}
+              <li><a href="{{ route('doctors.index') }}">Doctors List</a></li>
               <!-- <li><a href="index3.html">View Doctor</a></li> -->
             </ul>
           </li>
@@ -126,4 +123,3 @@
 
     </div>
     <!-- /sidebar menu -->
-{{-- @endsection --}}

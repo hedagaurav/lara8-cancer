@@ -30,6 +30,6 @@ Route::post('login',[AuthController::class,'login'])->name('login');
 
 /* Admin Routes */
 Route::group(['prefix' => 'admin','middleware'=>'auth'], function () {
-    Route::resource('doctor', DoctorController::class);
+    Route::resource('doctors', DoctorController::class);
     Route::resource('cancer-type', CancerTypesController::class);
 });
