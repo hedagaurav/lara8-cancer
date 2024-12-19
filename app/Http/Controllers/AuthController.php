@@ -26,7 +26,8 @@ class AuthController extends Controller
                case "S":
                    return redirect('admin')->with('message','User Logged In');
                case "D":
-               return redirect('doctor')->with('message','User Logged In');
+                   return view('doctor_dashboard')->with('message','User Not found.');
+            //    return redirect('doctor')->with('message','User Logged In');
                case "P":
                return redirect('/')->with('message','User Logged In');
                break;

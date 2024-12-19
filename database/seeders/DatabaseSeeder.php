@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
             // UserSeeder::class
         ]);
         $this->call([CancerTypesSeeder::class]);
-        // $this->call([DoctorSeeder::class]);
+        $this->call([DoctorSeeder::class]);
     //    $this->call([PatientSeeder::class]);
 
     }

@@ -16,6 +16,6 @@ class DoctorSeeder extends Seeder
     public function run()
     {
         // User::factory()->count(15)->create(['user_type'=>'D']);
-        Doctor::factory()->count(15)->create();
+        Doctor::factory()->count(5)->create();
     }
 }

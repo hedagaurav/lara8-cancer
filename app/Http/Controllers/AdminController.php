@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\TestMail;
 use App\Models\CancerTypes;
 use App\Models\Doctor;
+use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class AdminController extends Controller
 {
@@ -30,28 +34,58 @@ class AdminController extends Controller
     }
 
     function add_doctor(){
-        $cancer_type = CancerTypes::all();
-        return view('admin.doctor_add',compact('cancer_type'));
+        $cancer_types = CancerTypes::all();
+        
+        return view('admin.doctor_add',compact('cancer_types'));
     }
 
     function store_doctor(Request $request){
         DB::beginTransaction();
         try {
-            $doctor = new Doctor();
-            $doctor->fullname = $request->doctor_name;
-            $doctor->email = $request->doctor_email;
-            $doctor->password = 'here';
-            $doctor->username = 'here'.random_int(1,100);
-            $doctor->specialization = $request->doctor_cancer;
-            
-            if($doctor->save()){
+            $user = new User();
+            $user->name = $request->doctor_name;
+            $user->email = $request->doctor_email;
+            $user->password = Str::random();
+            $user->user_type = 'D';
+            if($user->save()){
+                $user_id = $user->id;
+                $doctor = new Doctor();
+                $doctor->user_id = $user_id;
+                $doctor->specialization = $request->doctor_cancer;
+                if($doctor->save()){
+                    // send password via email to the doctor.
+                    // $to = $user->email;
+                    $to = 'hedagaurav93@gmail.com';
+                    $subject = "Laravel Cancer Login Password";
+                    $message = "Your login password for Laravel Cancer App is ".$user->password;
+                    $this->sendEmail($to,$subject,$message);
+                    DB::commit();            
 
-                $doctor_id = $doctor->id;
-                DB::commit();            
-                echo "doctor added send email";
+                }
             }
+
+            // return false;
+            // old code
+            // $doctor = new Doctor();
+            // $doctor->fullname = $request->doctor_name;
+            // $doctor->email = $request->doctor_email;
+            // $doctor->password = 'here';
+            // $doctor->username = 'here'.random_int(1,100);
+            // $doctor->specialization = $request->doctor_cancer;
+            
+            // if($doctor->save()){
+
+            //     $doctor_id = $doctor->id;
+            //     if($doctor_id){
+            //         $doctor_password = Str ::random(8);
+            //         echo $doctor_password;
+            //     }
+            //     // DB::commit();            
+            //     echo "doctor added send email";
+            // }
         } catch (Exception $ex) {
             DB::rollBack();
+            // print_r($ex);
             dd($ex);
 
         }
@@ -83,5 +117,21 @@ class AdminController extends Controller
             dd($ex);
 
         }    
+    }
+
+    function sendEmail($to='hedagaurav93@gmail.com',$subject=null,$message=null){
+        // $details = [
+        //     'title' => 'Mail from Laravel App',
+        //     'body' => 'This is a test email sent from a Laravel application.'
+        // ];
+
+        $details = [
+            'title' => $subject,
+            'body' => $message
+        ];
+    
+        Mail::to([$to])->send(new TestMail($details));
+    
+        return "Email sent successfully!";
     }
 }
