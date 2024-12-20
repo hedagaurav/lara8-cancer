@@ -45,7 +45,7 @@ class AdminController extends Controller
             $user = new User();
             $user->name = $request->doctor_name;
             $user->email = $request->doctor_email;
-            $user->password = Str::random();
+            $user->password = bcrypt(Str::random());
             $user->user_type = 'D';
             if($user->save()){
                 $user_id = $user->id;

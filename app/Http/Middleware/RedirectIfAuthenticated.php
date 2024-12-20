@@ -23,6 +23,22 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
+                $user = auth()->user();
+                switch ($user->user_type) {
+                    case "S":
+                        return redirect()->intended(RouteServiceProvider::HOME);
+                        break;
+                    case "D":
+                        return redirect()->intended(route('doctor.dashboard'));
+                        break;
+                    case "P":
+                        return redirect('/')->with('message', 'User Logged In');
+                        break;
+                    default:
+                        return redirect(RouteServiceProvider::HOME);
+
+                        break;
+                }
                 return redirect(RouteServiceProvider::HOME);
             }
         }
