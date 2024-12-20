@@ -17,7 +17,8 @@ class CreateEnquiriesTable extends Migration
             $table->id();
             $table->string('patient_name');
             $table->string('email');
-            $table->unsignedBigInteger('cancer_type');
+            $table->foreignId('cancer_type')->constrained('cancer_types');
+            $table->foreignId('user_id')->nullable()->constrained('users');
             $table->timestamps();
         });
     }

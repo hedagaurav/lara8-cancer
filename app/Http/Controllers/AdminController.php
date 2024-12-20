@@ -59,7 +59,7 @@ class AdminController extends Controller
                     $subject = "Laravel Cancer Login Password";
                     $message = "Your login password for Laravel Cancer App is ".$user->password;
                     $this->sendEmail($to,$subject,$message);
-                    DB::commit();            
+                    DB::commit();
 
                 }
             }

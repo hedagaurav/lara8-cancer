@@ -28,7 +28,7 @@ Route::post('/', [EnquiryController::class, 'save_enquiries'])->name('save.enqui
 /* admin */
 Route::group(['prefix' => 'admin'], function () {
     Route::view('login', 'login');
-    Route::post('login', [AuthController::class, 'login'])->name('login');
+    // Route::post('login', [AuthController::class, 'login'])->name('login'); // file deleted
 
     /* admin - cancer type CRUD */
     Route::resource('cancer_type', CancerTypesController::class);
@@ -36,7 +36,7 @@ Route::group(['prefix' => 'admin'], function () {
     // Route::post('cancer_type/save', [AdminController::class, 'store_cancer_types'])->name('cancer_type.save');
     
     /* admin - doctor CRUD */
-    Route::get('doctor', [AdminController::class, 'list_doctor'])->name('doctor.dashboard');
+    Route::get('doctor', [AdminController::class, 'list_doctor'])->name('admin.doctor.dashboard');
     Route::get('doctor/add', [AdminController::class, 'add_doctor'])->name('doctor.add');
     Route::post('doctor/save', [AdminController::class, 'store_doctor'])->name('doctor.save');
     Route::get('sendemail', [AdminController::class, 'sendEmail'])->name('admin.sendemail');    
@@ -46,7 +46,10 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 
-/* doctor */
+/* after doctor login routes */
+Route::get('doctor', [DoctorController::class, 'index'])->name('doctor.dashboard');
+Route::get('create_plan', [DoctorController::class, 'generate_plan'])->name('doctor.generate_plan');
+Route::post('create_plan', [DoctorController::class, 'create_plan'])->name('doctor.create_plan');
 
 Route::get('admin', [AdminController::class, 'index'])->name('admin.dashboard');
 

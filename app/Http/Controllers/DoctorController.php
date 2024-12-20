@@ -33,10 +33,38 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        $doctors = Doctor::find(2);
-        $enquiries = Enquiry::with('patient','cancer_type')->where('cancer_type_id',$doctors->specialization)->get()->toArray();
+        $doctor_id = auth()->id();
+        $doctor = User::with('doctor')->findOrFail($doctor_id)->toArray();
+        // dd($doctor);
+
+        $enquiries = Enquiry::with('user','cancer_detail')->where('cancer_type',$doctor['doctor']['specialization'])->get()->toArray();
+        // dump($doctor->toArray());
+        // dump($enquiries);
+        // exit;
+        // print_r($enquiries);
         
-        return view('doctor_enquiries_list',compact(['enquiries']));
+        return view('doctor.doctor_enquiries_list',compact(['doctor','enquiries']));
+    }
+
+    /**
+     * Show the form for creating a plan for the patient enquiry.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function generate_plan()
+    {
+        $cancer_type = CancerTypes::all();
+        return view('doctor.generate_plan',compact('cancer_type'));
+    }
+
+    /**
+     * save plan for the patient enquiry.
+     *
+     * @param \Illuminate\Http\Request $reqeust
+     * @return \Illuminate\Http\Response
+     */
+    function create_plan($request){
+
     }
 
     /**

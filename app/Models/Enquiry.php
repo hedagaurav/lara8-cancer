@@ -14,20 +14,26 @@ class Enquiry extends Model
         'email',
         // 'contact_no',
         'cancer_type',
+        'user_type',
     ];
 
-    public function patient()
+    public function user()
     {
-        return $this->belongsTo(Patient::class, 'patient_id', 'id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function cancer_type()
+    public function cancer_detail()
     {
-        return $this->belongsTo(CancerTypes::class, 'cancer_type_id', 'id');
+        return $this->belongsTo(CancerTypes::class, 'cancer_type');
     }
 
-    function doctor(){
-        return $this->hasManyThrough(Doctor::class,CancerTypes::class,'id','specialization');
-    }
+    // function user_cancer_details()
+    // {
+    //     return $this->hasManyThrough(Enquiry::class, Doctor::class, , 'id', 'specialization');
+    // }
 
+    function doctor()
+    {
+        return $this->hasManyThrough(Doctor::class, CancerTypes::class, 'id', 'specialization');
+    }
 }

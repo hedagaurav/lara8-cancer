@@ -10,7 +10,7 @@
     <div class="container">
         @yield('content')
     </div>
-    @include('guide')
+    
 
     <!-- jQuery -->
     <!-- Bootstrap -->
