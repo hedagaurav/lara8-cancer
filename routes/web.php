@@ -39,7 +39,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('doctor', [AdminController::class, 'list_doctor'])->name('doctor.dashboard');
     Route::get('doctor/add', [AdminController::class, 'add_doctor'])->name('doctor.add');
     Route::post('doctor/save', [AdminController::class, 'store_doctor'])->name('doctor.save');
-    
+    Route::get('sendemail', [AdminController::class, 'sendEmail'])->name('admin.sendemail');    
 
     // Route::resource('doctor', DoctorController::class);
     // Route::resource('cancer-type', CancerTypesController::class);
@@ -49,15 +49,6 @@ Route::group(['prefix' => 'admin'], function () {
 /* doctor */
 
 Route::get('admin', [AdminController::class, 'index'])->name('admin.dashboard');
-
-Route::get('doctor_enquiries', [DoctorController::class, 'index'])->name('doctor');
-
-
-/* Admin Routes */
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
