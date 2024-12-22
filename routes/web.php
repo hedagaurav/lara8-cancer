@@ -48,7 +48,7 @@ Route::group(['prefix' => 'admin'], function () {
 
 /* after doctor login routes */
 Route::get('doctor', [DoctorController::class, 'index'])->name('doctor.dashboard');
-Route::get('create_plan', [DoctorController::class, 'generate_plan'])->name('doctor.generate_plan');
+Route::get('create_plan/{patient_id}', [DoctorController::class, 'generate_plan'])->name('doctor.generate_plan');
 Route::post('create_plan', [DoctorController::class, 'create_plan'])->name('doctor.create_plan');
 
 Route::get('admin', [AdminController::class, 'index'])->name('admin.dashboard');

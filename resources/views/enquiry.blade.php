@@ -40,14 +40,14 @@
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                    {{-- <div class="row form-group">
+                    <div class="row form-group">
                         <label for="password"><?= ucwords('password') ?> <span class="text-danger">*</span></label>
                         <div class="col-sm-8"></div>
-                        <input type="password" class="form-control" name="password" id="password" value="p@ssw0rd">
+                        <input type="password" class="form-control" name="password" id="password" value="password">
                         @error('password')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
-                    </div> --}}
+                    </div>
                     {{-- <div class="row form-group">
                         <label for="contact_no"><?= ucwords('contact no') ?> <span class="text-danger">*</span></label>
                         <div class="col-sm-8"></div>

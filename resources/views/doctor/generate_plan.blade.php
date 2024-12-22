@@ -13,13 +13,24 @@
     <script src="https://cdn.ckeditor.com/ckeditor5-premium-features/44.1.0/ckeditor5-premium-features.umd.js"></script>
     <!--  -->
 
+    <style>
+        /* for ckeditor height issue */
+        .ck-editor__editable {
+            min-height: 500px !important;
+            height: 500px !important;    /* Fix the height */
+            overflow-y: auto !important; /* Add scroll for extra content */
+        }
+    </style>
 
     <h3>Generate Plan</h3>
     <div>
-
         <form action="{{ route('doctor.create_plan') }}" method="post">
+            @csrf
+            <input type="text" name="patient_id" id="patient_id" value="{{ $patient['id'] }}">
+            <input type="text" name="doctor_id" id="doctor_id" value="{{ $doctor_id }}">
             <label for="treatment_plan">Treatment Plan</label>
             <textarea name="treatment_plan" id="treatment_plan" cols="30" rows="10"></textarea>
+            <button type="submit">Create Treatment</button>
         </form>
     </div>
 
@@ -52,8 +63,13 @@
                     ],
                     menuBar: {
                         isVisible: true
-                    }
+                    },
 
+                })
+                .then(editor => {
+                    // const editable_element = editor.ui.view.editable.element; 
+                    // editable_element.style.minHeight = '500px';                    
+                    // editable_element.style.height = '500px';
                 })
                 .catch(error => {
                     console.log(error);

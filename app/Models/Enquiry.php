@@ -27,13 +27,14 @@ class Enquiry extends Model
         return $this->belongsTo(CancerTypes::class, 'cancer_type');
     }
 
-    // function user_cancer_details()
-    // {
-    //     return $this->hasManyThrough(Enquiry::class, Doctor::class, , 'id', 'specialization');
-    // }
+    function treatment_details()
+    {
+        return $this->hasMany(Treatment_plan::class, 'patient_id', 'id');
+        // return $this->hasManyThrough(Treatment_plan::class, 'patient_id', 'id');
+    }
 
     function doctor()
     {
-        return $this->hasManyThrough(Doctor::class, CancerTypes::class, 'id', 'specialization');
+        return $this->hasOneThrough(Doctor::class, Treatment_plan::class, 'patient_id', 'id','id','doctor_id');
     }
 }
