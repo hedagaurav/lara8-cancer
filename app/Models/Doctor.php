@@ -9,9 +9,9 @@ class Doctor extends Model
 {
     use HasFactory;
 
-    // public function user(){
-    //     return $this->morphOne(User::class,'id');
-    // }
+    public function user(){
+        return $this->belongsTo(User::class,'user_id');
+    }
 
     public function cancer_type(){
         return $this->belongsTo(CancerTypes::class,'specialization','id');

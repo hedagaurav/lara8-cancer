@@ -45,7 +45,7 @@ class AdminController extends Controller
             $user = new User();
             $user->name = $request->doctor_name;
             $user->email = $request->doctor_email;
-            $user->password = Str::random();
+            $user->password = bcrypt(Str::random());
             $user->user_type = 'D';
             if($user->save()){
                 $user_id = $user->id;
@@ -59,7 +59,7 @@ class AdminController extends Controller
                     $subject = "Laravel Cancer Login Password";
                     $message = "Your login password for Laravel Cancer App is ".$user->password;
                     $this->sendEmail($to,$subject,$message);
-                    DB::commit();            
+                    DB::commit();
 
                 }
             }

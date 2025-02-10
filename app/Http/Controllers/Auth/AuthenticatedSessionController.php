@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,6 +33,22 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+
+        $user = User::where('email', $request->email)->firstOrFail();
+        switch ($user->user_type) {
+            case "S":
+                return redirect()->intended(RouteServiceProvider::HOME);
+                break;
+            case "D":
+                return redirect()->intended(route('doctor.dashboard'));
+                break;
+            case "P":
+                return redirect('/')->with('message', 'User Logged In');
+                break;
+            // default:
+                // return redirect('login');
+                // break;
+        }
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 

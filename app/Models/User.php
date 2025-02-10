@@ -50,8 +50,8 @@ class User extends Authenticatable
     //     return $this->morphTo();
     // }
 
-    public function patient(){
-        return $this->hasOne(Patient::class);
+    public function enquiry(){
+        return $this->hasOne(Enquiry::class);
     }
 
     public function cancer_type(){
